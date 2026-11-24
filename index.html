@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#8e1a3d">
+<title>A Special Gift ❤️</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="flash" id="flash" aria-hidden="true"></div>
+
+<section id="gate" class="view active" aria-label="Password">
+ <div class="center"><div class="glass gate-box" id="gateBox">
+  <div class="gate-heart" aria-hidden="true">❤️</div>
+  <h1>A Special Gift For You ❤️</h1>
+  <p class="sub">This little gift was made just for you.</p>
+  <form id="gateForm" autocomplete="off" novalidate>
+   <input id="pw" type="text" inputmode="text" placeholder="Password" aria-label="Password" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go">
+   <button class="btn" type="submit">Unlock ❤️</button>
+  </form>
+  <p class="gate-msg" id="gateMsg" role="alert"></p>
+ </div></div>
+</section>
+
+<section id="loader" class="view" aria-label="Loading" inert>
+ <div class="center">
+  <svg class="big-heart" id="bigHeart" viewBox="0 0 100 92" aria-hidden="true">
+   <defs>
+    <clipPath id="hc"><path d="M50 88C20 62 2 44 2 26 2 12 13 3 26 3c10 0 19 6 24 15 5-9 14-15 24-15 13 0 24 9 24 23 0 18-18 36-48 62z"/></clipPath>
+    <linearGradient id="hg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="92"><stop offset="0" stop-color="#ff8fa3"/><stop offset="1" stop-color="#d00032"/></linearGradient>
+   </defs>
+   <path d="M50 88C20 62 2 44 2 26 2 12 13 3 26 3c10 0 19 6 24 15 5-9 14-15 24-15 13 0 24 9 24 23 0 18-18 36-48 62z" fill="rgba(255,255,255,.1)"/>
+   <rect id="fillRect" x="0" y="92" width="100" height="92" fill="url(#hg)" clip-path="url(#hc)"/>
+   <path d="M50 88C20 62 2 44 2 26 2 12 13 3 26 3c10 0 19 6 24 15 5-9 14-15 24-15 13 0 24 9 24 23 0 18-18 36-48 62z" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="1.6"/>
+  </svg>
+  <div class="pct" id="pct">0%</div>
+  <p class="prep">Preparing your surprise...</p>
+ </div>
+</section>
+
+<main id="main" class="view scroll" inert>
+ <section class="sec">
+  <h2 class="title reveal">To My Favorite Person ❤️</h2>
+  <div class="glass letter reveal" id="letter" dir="rtl">
+   <span class="deco d1">❤</span><span class="deco d2">❤</span><span class="deco d3">❤</span>
+   <h3 class="line">إلى أجمل صدفة في حياتي ❤️</h3>
+   <p class="line">يمكن الكلام مش دايمًا بيعرف يوصف اللي جوانا، بس حبيت أعملك حاجة مختلفة، حاجة تفضل معاكي وتفكرك قد إيه إنتِ شخص مميز.</p>
+   <p class="line">وجودك في حياتي خلّى لحاجات كتير طعم مختلف، وابتسامتك من الحاجات اللي بتقدر تغيّر يوم كامل للأحسن.</p>
+   <p class="line">مش لازم يكون فيه مناسبة علشان أقولك إنك غالية، ولا لازم أستنى يوم معين علشان أفرّحك.</p>
+   <p class="line">كل اللي أتمناه إن الهدية دي ترسم ابتسامة على وشك، وتكون سبب في لحظة حلوة من يومك.</p>
+   <p class="line">خليكي دايمًا مبسوطة، لأنك تستاهلي كل حاجة حلوة. ❤️</p>
+  </div>
+
+  <div class="glass player reveal" id="player">
+   <div class="p-top">
+    <div class="cover" aria-hidden="true"><span>❤</span></div>
+    <div class="p-info"><div class="song" data-bind="songName"></div><div class="artist" id="songArtist"></div></div>
+   </div>
+   <input type="range" id="seek" min="0" max="1000" value="0" aria-label="Seek" disabled>
+   <div class="times"><span id="cur">0:00</span><span id="dur">0:00</span></div>
+   <div class="ctrls">
+    <button class="ic" id="restart" aria-label="Restart"><svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg></button>
+    <button class="ic big" id="play" aria-label="Play"><svg viewBox="0 0 24 24"><path class="i-play" d="M8 5v14l11-7z"/><path class="i-pause" d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+    <button class="ic" id="stop" aria-label="Stop"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></button>
+   </div>
+   <label class="vol"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg><input type="range" id="vol" min="0" max="100" value="80" aria-label="Volume"></label>
+   <p class="note" id="musicNote"></p>
+  </div>
+ </section>
+
+ <section class="sec">
+  <div class="people reveal">
+   <div class="glass person"><div class="avatar" data-init="boyName"></div><h3 data-bind="boyName"></h3><div class="lbl">Name</div><div class="lbl2">Birthday</div><div class="bday" id="boyB"></div></div>
+   <div class="between" aria-hidden="true">❤</div>
+   <div class="glass person"><div class="avatar" data-init="girlName"></div><h3 data-bind="girlName"></h3><div class="lbl">Name</div><div class="lbl2">Birthday</div><div class="bday" id="girlB"></div></div>
+  </div>
+ </section>
+
+ <section class="sec">
+  <h2 class="title reveal">Every Second With You Is Special ❤️</h2>
+  <div class="glass counter reveal">
+   <p class="since" id="since"></p>
+   <div class="units">
+    <div><b data-u="years">0</b><span>Years</span></div><div><b data-u="months">0</b><span>Months</span></div><div><b data-u="days">0</b><span>Days</span></div>
+    <div><b data-u="hours">0</b><span>Hours</span></div><div><b data-u="minutes">0</b><span>Minutes</span></div><div><b data-u="seconds">0</b><span>Seconds</span></div>
+   </div>
+  </div>
+  <button class="bubble reveal" id="bubble">One More Thing... 💌<i class="badge">1</i></button>
+ </section>
+</main>
+
+<section id="final" class="view scroll" inert>
+ <div class="center fin">
+  <h2 class="title fade" id="fTitle">Just For You ❤️</h2>
+  <div class="glass letter fade" id="fLetter" dir="rtl" style="--step:1.1s">
+   <p class="line">وأخيرًا، وصلتي لنهاية الهدية، بس مش لنهاية الكلام الحلو.</p>
+   <p class="line">كان نفسي أقدر أحط في الهدية دي كل حاجة حلوة تستاهليها، لكن اكتفيت إني أعمل حاجة بسيطة مخصوص علشانك.</p>
+   <p class="line">أتمنى تكون عجبتك، والأهم إنها تكون خلتك تبتسمي.</p>
+   <p class="line" dir="ltr">You deserve all the beautiful things in this world. ❤️</p>
+  </div>
+  <div class="forever fade" id="forever"><div class="f-t">Forever Special ❤️</div><div class="f-n" data-bind="names"></div></div>
+  <button class="btn fade" id="backTop">Back to the beginning ↑</button>
+ </div>
+</section>
+<script src="js/script.js"></script>
+</body>
+</html>
